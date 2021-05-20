@@ -16,7 +16,7 @@
       throw new Error('Элемента не существует');
       }
     this.element = element;
-    Modal.registerEvents();
+    this.registerEvents();
   }
 
   /**
@@ -25,7 +25,7 @@
    * (с помощью метода Modal.onClose)
    * */
   registerEvents() {
-    this.element.addEventListener('click', Modal.onClose);
+    this.element.addEventListener('click', this.onClose);
   }
 
   /**
@@ -34,8 +34,8 @@
    * */
   onClose(e) {
     if (e.target.dataset.dismiss === 'modal') {
-      e.target.preventDefault();
-      Modal.close();
+      e.target.closest('.modal').style.display = 'none';
+      
     }
   }
   /**
@@ -43,12 +43,12 @@
    * со значением «block»
    * */
   open() {
-    this.element.style.diplay = 'block';
+    this.element.style.display = 'block';
   }
   /**
    * Закрывает окно: удаляет CSS-свойство display
    * */
-  close(){
-    this.element.style.diplay = 'none';
+  close() {
+    e.target.closest('.modal').style.display = 'none';
   }
 }

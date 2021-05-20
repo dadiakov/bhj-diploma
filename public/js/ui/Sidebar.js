@@ -33,6 +33,7 @@
    * */
   static initAuthLinks() {
     document.querySelector('.menu-item_register').onclick = () => {
+     // App.getModal('register').element.style.display = "block";
       App.getModal('register').open();
     }
     document.querySelector('.menu-item_login').onclick = () => {

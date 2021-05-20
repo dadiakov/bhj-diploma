@@ -5,6 +5,18 @@
       "email": "demo@demo",
       "password": "demo",
       "id": "1"
+    },
+    {
+      "name": "dima",
+      "email": "dima@dima",
+      "password": "dima",
+      "id": "2crvv4kox9l2lb"
+    },
+    {
+      "name": "111",
+      "email": "111@111",
+      "password": "111",
+      "id": "2crv2gckoxajk76"
     }
   ],
   "accounts": [
@@ -22,6 +34,26 @@
       "name": "Бизнес",
       "user_id": "1",
       "id": "3"
+    },
+    {
+      "name": "Новый счет",
+      "user_id": "2crvv4kox9l2lb",
+      "id": "2crvazokox9nhuc"
+    },
+    {
+      "name": "ваыва",
+      "user_id": "2crvv4kox9l2lb",
+      "id": "2crv7vckox9qe0d"
+    },
+    {
+      "name": "фывфыв",
+      "user_id": "2crv2gckoxajk76",
+      "id": "2crv9q0koxaksaj"
+    },
+    {
+      "name": "sfgdfg",
+      "user_id": "1",
+      "id": "2crv3zwkoxck1mz"
     }
   ],
   "transactions": [

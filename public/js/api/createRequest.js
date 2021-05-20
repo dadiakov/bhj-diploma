@@ -19,9 +19,9 @@ const createRequest = (options = {}) => {
       }
 
     } else {
-        let dataToSend = new FormData();
+        dataToSend = new FormData();
         for (let prop in options.data) {
-          dataToSend.append = (prop, options.data[prop]);
+          dataToSend.append(prop, options.data[prop]);
         }
     }
   

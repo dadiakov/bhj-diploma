@@ -16,8 +16,8 @@ class AccountsWidget {
   constructor( element ) {
     if(!element) throw new Error('AccountsWidget, что-то пошло не так');
     this.element = element;
-    AccountsWidget.registerEvents();
-    AccountsWidget.update();
+    this.registerEvents();
+    this.update();
   }
 
   /**
@@ -30,10 +30,11 @@ class AccountsWidget {
   registerEvents() {
     document.querySelector('.create-account').onclick = () => {
       App.getModal('createAccount').open();
-      this.element.addEventListener('click', e => {
-        AccountsWidget.onSelectAccount(e.target);
-      })
     }
+    this.element.addEventListener('click', e => {
+      this.onSelectAccount(e.target);
+    })
+    
   }
 
   /**
@@ -50,8 +51,9 @@ class AccountsWidget {
     if(User.current()) {
       Account.list(User.current(), (err, response) => {
         if(response.success) {
-          AccountsWidget.clear();
-          response.forEach(e => renderItem(e));
+          this.clear();
+          this.renderItem(response.data);
+         // response.forEach(e => this.renderItem(e));
         }
       })
     }
@@ -74,7 +76,8 @@ class AccountsWidget {
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
   onSelectAccount( element ) {
-    Array.from(element.closest('.accounts-panel').querySelectorAll('.account')).forEach(e => e.classList.remove('active'));
+    console.log(element);
+    Array.from(element.closest('.accounts-panel').querySelectorAll('.account')).forEach(e => {e.classList.remove('active')});
     element.classList.add('active');
     let accountId = {};
     accountId[User.current().id] = element.id;
@@ -104,7 +107,7 @@ class AccountsWidget {
    * */
   renderItem(data){
     data.forEach(e => {
-      this.element.insertAdjacentHTML('beforeend', AccountsWidget.getAccountHTML(e));
+      this.element.insertAdjacentHTML('beforeend', this.getAccountHTML(e));
     })
   }
 }

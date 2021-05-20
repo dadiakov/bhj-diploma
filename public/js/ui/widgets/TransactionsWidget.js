@@ -14,7 +14,7 @@
   constructor( element ) {
     if(!element) throw new Error('TransactionsWidget, что-то пошло не так');
     this.element = element;
-    TransactionsWidget.registerEvents();
+    this.registerEvents();
   }
   /**
    * Регистрирует обработчики нажатия на

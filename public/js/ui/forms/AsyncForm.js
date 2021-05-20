@@ -24,7 +24,7 @@
    * */
   registerEvents() {
     this.element.addEventListener('submit', () => {
-      this.element.preventDefault();
+ //     this.element.preventDefault();
       this.submit();
     })
   }

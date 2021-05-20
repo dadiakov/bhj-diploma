@@ -5,7 +5,7 @@
  * */
 class User {
   
-  URL = '/user';
+  static URL = '/user';
   /**
    * Устанавливает текущего пользователя в
    * локальном хранилище.
@@ -27,7 +27,9 @@ class User {
    * из локального хранилища
    * */
   static current() {
-    return JSON.parse(localStorage.user);
+    if (localStorage.user) {
+      return JSON.parse(localStorage.user);
+    }
   }
 
   /**

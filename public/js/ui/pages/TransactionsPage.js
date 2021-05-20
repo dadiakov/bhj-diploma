@@ -54,7 +54,7 @@
   removeAccount() {
     if(!this.lastOptions) return;
     if (confirm('Вы действительно хотите удалить счёт?')) {
-      Account.remove(this.lastOptions, (err, response) => {
+      Account.remove(this.element, (err, response) => {
         if (response.success) App.updateWidgets();      
       });
     }
@@ -85,11 +85,10 @@
     this.lastOptions = options;
     Account.get(options.account_id, (err, response) => {
       if (response.success) {
-        this.renderTitle(response.name);
-        Transaction.list(response.name, (err, response) => {
+        this.renderTitle(response.data);
+        Transaction.list(response.data, (err, response) => {
           if (response.success) {
-            console.log('Посмотреть объект response. Файл TransactionPage');
-            this.renderTransactions(response.text);
+            this.renderTransactions(response.data);
           }
         });
       }
@@ -166,6 +165,6 @@
       html += this.getTransactionHTML(e);
     }
     );
-    document.querySelector('section.content').innerHTML = html;
+    document.querySelector('.content').innerHTML = html;
   }
 }

@@ -7,7 +7,7 @@
    * Вызывает родительский конструктор и
    * метод renderAccountsList
    * */
-  constructor(element) {
+  super(element) {
     this.renderAccountsList();
   }
 
@@ -18,10 +18,11 @@
   renderAccountsList() {
     Account.list(null, (err, response) => {
       if (response.success) {
-        let option = `<option value="${id}">${name}</option>`;
-        alert('Нужно посмотреть формат объекта');
-        console.log(response);
-        //this.element.querySelector('.accounts-select').insertAdjacentHTML('beforeend', )
+        let optionsToInsert = ``;
+        response.data.forEach(e => {
+          optionsToInsert += `<option value="${e.id}">${e.name}</option>`;
+        });
+        this.element.querySelector('.accounts-select').insertAdjacentHTML('beforeend', optionsToInsert);
       }
     })
   }
@@ -33,12 +34,12 @@
    * в котором находится форма
    * */
   onSubmit(data) {
-    Transaction.create(data, (err, response) => {
-      if(response.success) {
-        this.element.reset();
-        Modal.close();
-        App.update();
-      }
-    });
+     Transaction.create(data, (err, response) => {
+       if(response.success) {
+           this.element.reset();
+           Modal.close();
+           App.update();
+       }
+     });
   }
 }
