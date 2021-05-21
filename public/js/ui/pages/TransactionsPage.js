@@ -23,7 +23,8 @@
    * Вызывает метод render для отрисовки страницы
    * */
   update() {
-    if (this.lastOptions) this.render(this.lastOptions);
+    //if (this.lastOptions) this.render(this.lastOptions);
+    this.render(this.lastOptions);
   }
 
   /**
@@ -84,7 +85,6 @@
   render(options) {
     if (!options) return;
     this.lastOptions = options;
-    console.log(options.account_id);
     Account.get(options.account_id, (err, response) => {
       if (response.success) {
         this.renderTitle(response.data.filter(e => e.id==options.account_id)[0].name);

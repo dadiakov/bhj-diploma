@@ -34,7 +34,14 @@
    * в котором находится форма
    * */
   onSubmit(data) {
-     Transaction.create(data, (err, response) => {
+        let modifiedData = data;
+        if (this.element == document.getElementById('new-expense-form')) {
+          modifiedData.type = 'expense';
+        } else {
+          modifiedData.type = 'income';
+        };
+     Transaction.create(modifiedData, (err, response) => {
+       console.log(response);
        if(response.success) {
            this.element.reset();
            this.element.closest('.modal').style.display = 'none';
