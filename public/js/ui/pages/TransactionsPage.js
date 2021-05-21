@@ -16,6 +16,8 @@
     this.registerEvents();
     this.lastOptions = null;
   }
+ 
+    
   
   
 
@@ -23,8 +25,7 @@
    * Вызывает метод render для отрисовки страницы
    * */
   update() {
-    //if (this.lastOptions) this.render(this.lastOptions);
-    this.render(this.lastOptions);
+    if (this.lastOptions) this.render(this.lastOptions);
   }
 
   /**
@@ -86,10 +87,12 @@
     if (!options) return;
     this.lastOptions = options;
     Account.get(options.account_id, (err, response) => {
+      console.log(options);
       if (response.success) {
         this.renderTitle(response.data.filter(e => e.id==options.account_id)[0].name);
         Transaction.list(options, (err, response) => {
           if (response.success) {
+            console.log(response);
             this.renderTransactions(response.data);
           }
         });
@@ -120,7 +123,10 @@
    * в формат «10 марта 2019 г. в 03:20»
    * */
   formatDate(date){
+    if (!date) return;
+    return new Date(date);
     let str = date;
+    console.log(str);
     let array = str.split(' ');
     let data = array[0].split('-');
     let time = array[1].split(':');
@@ -212,11 +218,13 @@
    * используя getTransactionHTML
    * */
   renderTransactions(data){
+    console.log(data);
     let html = ``;
     data.forEach(e => {
       html += this.getTransactionHTML(e);
     }
     );
+    console.log(html);
     document.querySelector('.content').innerHTML = html;
   }
 }

@@ -107,15 +107,6 @@
       "user_id": "1"
     },
     {
-      "account_id": "2",
-      "created_at": "2019-09-27 13:27:02",
-      "id": "7",
-      "name": "Долг в банк",
-      "sum": 5000,
-      "type": "expense",
-      "user_id": "1"
-    },
-    {
       "account_id": "3",
       "created_at": "2017-10-15 13:27:02",
       "id": "9",
@@ -186,6 +177,33 @@
       "account_id": "1",
       "user_id": "1",
       "created_at": "2021-05-21T18:49:56.219Z"
+    },
+    {
+      "id": "2crv7mokoyp03np",
+      "type": "income",
+      "name": "asd",
+      "sum": 500,
+      "account_id": "3",
+      "user_id": "1",
+      "created_at": "2021-05-21T19:05:03.108Z"
+    },
+    {
+      "id": "2crv5lokoypg9dz",
+      "type": "income",
+      "name": "ert",
+      "sum": 500,
+      "account_id": "1",
+      "user_id": "1",
+      "created_at": "2021-05-21T19:17:37.030Z"
+    },
+    {
+      "id": "2crv5o0koypzyl4",
+      "type": "income",
+      "name": "qww",
+      "sum": 500,
+      "account_id": "1",
+      "user_id": "1",
+      "created_at": "2021-05-21T19:32:56.151Z"
     }
   ]
 }
