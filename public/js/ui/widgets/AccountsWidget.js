@@ -53,7 +53,6 @@ class AccountsWidget {
         if(response.success) {
           this.clear();
           this.renderItem(response.data);
-         // response.forEach(e => this.renderItem(e));
         }
       })
     }
@@ -76,12 +75,9 @@ class AccountsWidget {
    * Вызывает App.showPage( 'transactions', { account_id: id_счёта });
    * */
   onSelectAccount( element ) {
-    console.log(element);
     Array.from(element.closest('.accounts-panel').querySelectorAll('.account')).forEach(e => {e.classList.remove('active')});
-    element.classList.add('active');
-    let accountId = {};
-    accountId[User.current().id] = element.id;
-    App.showPage('transactions', accountId);
+    element.closest('.account').classList.add('active');
+    App.showPage('transactions', {account_id: element.closest('.account').dataset.id});
   }
 
   /**

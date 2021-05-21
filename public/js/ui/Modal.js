@@ -25,7 +25,7 @@
    * (с помощью метода Modal.onClose)
    * */
   registerEvents() {
-    this.element.addEventListener('click', this.onClose);
+    this.element.addEventListener('click', event => this.onClose(event));
   }
 
   /**
@@ -33,10 +33,9 @@
    * Закрывает текущее окно (Modal.close())
    * */
   onClose(e) {
-    if (e.target.dataset.dismiss === 'modal') {
-      e.target.closest('.modal').style.display = 'none';
-      
-    }
+     if(Array.from(document.querySelectorAll('[aria-hidden="true"]')).some(elem => elem == e.target) || e.target.dataset.dismiss === 'modal'){
+       this.close();
+     }
   }
   /**
    * Открывает окно: устанавливает CSS-свойство display
@@ -49,6 +48,6 @@
    * Закрывает окно: удаляет CSS-свойство display
    * */
   close() {
-    e.target.closest('.modal').style.display = 'none';
+    this.element.style.display = 'none';
   }
 }

@@ -14,15 +14,15 @@
     if(!element) throw new Error('Проблемы в TransactionsPage. Элемент не передан');
     this.element = element;
     this.registerEvents();
+    this.lastOptions = null;
   }
   
-  lastOptions = null;
+  
 
   /**
    * Вызывает метод render для отрисовки страницы
    * */
   update() {
-    this.render();
     if (this.lastOptions) this.render(this.lastOptions);
   }
 
@@ -36,8 +36,8 @@
     this.element.addEventListener('click', e => {
       if (e.target.classList.contains('remove-account')) {
         this.removeAccount();
-      } else if (e.target.classList.contains('transaction__remove')) {
-        this.removeTransaction(e.target.dataset.id);
+      } else if (e.target.closest('button').classList.contains('transaction__remove')) {
+        this.removeTransaction({id: e.target.closest('button').dataset.id});
       }
     })
   }
@@ -53,8 +53,9 @@
    * */
   removeAccount() {
     if(!this.lastOptions) return;
+    console.log(this.lastOptions);
     if (confirm('Вы действительно хотите удалить счёт?')) {
-      Account.remove(this.element, (err, response) => {
+      Account.remove({id:this.lastOptions.account_id}, (err, response) => {
         if (response.success) App.updateWidgets();      
       });
     }
@@ -83,10 +84,11 @@
   render(options) {
     if (!options) return;
     this.lastOptions = options;
+    console.log(options.account_id);
     Account.get(options.account_id, (err, response) => {
       if (response.success) {
-        this.renderTitle(response.data);
-        Transaction.list(response.data, (err, response) => {
+        this.renderTitle(response.data.filter(e => e.id==options.account_id)[0].name);
+        Transaction.list(options, (err, response) => {
           if (response.success) {
             this.renderTransactions(response.data);
           }
@@ -102,7 +104,7 @@
    * */
   clear() {
     this.renderTransactions([]);
-    this.renderTitle('renderTitle');
+    this.renderTitle('Название счета');
     this.lastOptions = null;
   }
 
@@ -118,7 +120,57 @@
    * в формат «10 марта 2019 г. в 03:20»
    * */
   formatDate(date){
-    return new Date(date).toUTCString(); //доделать!!!
+    let str = date;
+    let array = str.split(' ');
+    let data = array[0].split('-');
+    let time = array[1].split(':');
+
+    let yy = data[0];
+    let dd = data[2];
+    let mth = data[1];
+    let hh = time[0];
+    let mm = time[1];
+
+    switch(mth) {
+    case '01':
+      mth = 'января';
+      break;
+    case '02':
+      mth = 'февраля';
+      break;   
+    case '03':
+      mth = 'марта'
+      break;
+    case '04':
+      mth = 'апреля';
+      break;
+    case '05':
+      mth = 'мая';
+      break;   
+    case '06':
+      mth = 'июня'
+      break;
+    case '07':
+      mth = 'июля';
+      break;
+    case '08':
+      mth = 'августа';
+      break;   
+    case '09':
+      mth = 'сентября'
+      break;
+    case '10':
+      mth = 'октября';
+      break;
+    case '11':
+      mth = 'ноября';
+      break;   
+    case '12':
+      mth = 'декабря'
+      break;
+    }
+
+    return dd + ' ' + mth + ' ' + yy + ' г. в ' + hh + ':' + mm;
 
   }
 

@@ -22,9 +22,10 @@
    * Необходимо запретить отправку формы и в момент отправки
    * вызывает метод submit()
    * */
+  
   registerEvents() {
-    this.element.addEventListener('submit', () => {
- //     this.element.preventDefault();
+    this.element.addEventListener('submit', (event) => {
+      event.preventDefault();
       this.submit();
     })
   }

@@ -37,7 +37,7 @@
      Transaction.create(data, (err, response) => {
        if(response.success) {
            this.element.reset();
-           Modal.close();
+           this.element.closest('.modal').style.display = 'none';
            App.update();
        }
      });

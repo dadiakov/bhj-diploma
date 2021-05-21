@@ -51,9 +51,9 @@
       "id": "2crv9q0koxaksaj"
     },
     {
-      "name": "sfgdfg",
+      "name": "Тестовый счет",
       "user_id": "1",
-      "id": "2crv3zwkoxck1mz"
+      "id": "2crvxgkoyix8tc"
     }
   ],
   "transactions": [
@@ -90,15 +90,6 @@
       "id": "4",
       "name": "Молочные продукты",
       "sum": 100,
-      "type": "income",
-      "user_id": "1"
-    },
-    {
-      "account_id": "2",
-      "created_at": "2019-09-25 15:03:02",
-      "id": "5",
-      "name": "Фрукты",
-      "sum": 250,
       "type": "income",
       "user_id": "1"
     },

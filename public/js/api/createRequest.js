@@ -8,7 +8,7 @@ const createRequest = (options = {}) => {
     xhr.responseType = 'json';
     let url = options.url;
     let dataToSend = null;
-  
+
     if (options.method === 'GET') {
       if (options.data) {
          url = options.url + '?';
@@ -31,5 +31,6 @@ const createRequest = (options = {}) => {
     } catch (err) {
         options.callback(err); 
     }
+    
     xhr.onload = () => { options.callback(null, xhr.response) };
 }
