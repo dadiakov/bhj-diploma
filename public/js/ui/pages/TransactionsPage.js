@@ -38,10 +38,13 @@
     this.element.addEventListener('click', e => {
       if (e.target.classList.contains('remove-account')) {
         this.removeAccount();
-      } else if (e.target.closest('button').classList.contains('transaction__remove')) {
+      } 
+      if (e.target.closest('button')) {
+
+        if (e.target.closest('button').classList.contains('transaction__remove')) {
         this.removeTransaction({id: e.target.closest('button').dataset.id});
-      }
-    })
+      } 
+    }});
   }
 
   /**
@@ -55,11 +58,11 @@
    * */
   removeAccount() {
     if(!this.lastOptions) return;
-    console.log(this.lastOptions);
     if (confirm('Вы действительно хотите удалить счёт?')) {
       Account.remove({id:this.lastOptions.account_id}, (err, response) => {
         if (response.success) App.updateWidgets();      
       });
+      this.clear();
     }
   }
 
@@ -87,17 +90,15 @@
     if (!options) return;
     this.lastOptions = options;
     Account.get(options.account_id, (err, response) => {
-      console.log(options);
       if (response.success) {
-        this.renderTitle(response.data.filter(e => e.id==options.account_id)[0].name);
-        Transaction.list(options, (err, response) => {
+        this.renderTitle(response.data.name);
+      }
+    });
+    Transaction.list(options, (err, response) => {
           if (response.success) {
-            console.log(response);
             this.renderTransactions(response.data);
           }
-        });
-      }
-    })    
+    });
   }
 
   /**
@@ -124,18 +125,18 @@
    * */
   formatDate(date){
     if (!date) return;
-    return new Date(date);
-    let str = date;
-    console.log(str);
-    let array = str.split(' ');
-    let data = array[0].split('-');
-    let time = array[1].split(':');
+ 
+    let str1 = new Date(date).toLocaleDateString();
+    let str2 = new Date(date).toLocaleTimeString();
 
-    let yy = data[0];
-    let dd = data[2];
-    let mth = data[1];
-    let hh = time[0];
-    let mm = time[1];
+    let array1 = str1.split('.');
+    let array2 = str2.split(':');
+
+    let yy = array1[2];
+    let dd = array1[0];
+    let mth = array1[1];
+    let hh = array2[0];
+    let mm = array2[1];
 
     switch(mth) {
     case '01':
@@ -218,13 +219,11 @@
    * используя getTransactionHTML
    * */
   renderTransactions(data){
-    console.log(data);
     let html = ``;
     data.forEach(e => {
       html += this.getTransactionHTML(e);
     }
     );
-    console.log(html);
     document.querySelector('.content').innerHTML = html;
   }
 }

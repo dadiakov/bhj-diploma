@@ -17,6 +17,12 @@
       "email": "111@111",
       "password": "111",
       "id": "2crv2gckoxajk76"
+    },
+    {
+      "name": "Дима",
+      "email": "dima1@dima1",
+      "password": "dima1",
+      "id": "2crv5cskp02rb4x"
     }
   ],
   "accounts": [
@@ -49,6 +55,11 @@
       "name": "фывфыв",
       "user_id": "2crv2gckoxajk76",
       "id": "2crv9q0koxaksaj"
+    },
+    {
+      "name": "Сбер",
+      "user_id": "2crv5cskp02rb4x",
+      "id": "2crv5g8kp02rir0"
     }
   ],
   "transactions": [
@@ -179,31 +190,31 @@
       "created_at": "2021-05-21T18:49:56.219Z"
     },
     {
-      "id": "2crv7mokoyp03np",
+      "id": "2crv5g0kp02io6i",
       "type": "income",
-      "name": "asd",
-      "sum": 500,
-      "account_id": "3",
-      "user_id": "1",
-      "created_at": "2021-05-21T19:05:03.108Z"
-    },
-    {
-      "id": "2crv5lokoypg9dz",
-      "type": "income",
-      "name": "ert",
+      "name": "dfg",
       "sum": 500,
       "account_id": "1",
       "user_id": "1",
-      "created_at": "2021-05-21T19:17:37.030Z"
+      "created_at": "2021-05-22T18:11:10.697Z"
     },
     {
-      "id": "2crv5o0koypzyl4",
+      "id": "2crv81gkp02rq4k",
       "type": "income",
-      "name": "qww",
-      "sum": 500,
-      "account_id": "1",
-      "user_id": "1",
-      "created_at": "2021-05-21T19:32:56.151Z"
+      "name": "ЗП",
+      "sum": 10000,
+      "account_id": "2crv5g8kp02rir0",
+      "user_id": "2crv5cskp02rb4x",
+      "created_at": "2021-05-22T18:18:13.123Z"
+    },
+    {
+      "id": "2crva90kp02ryi5",
+      "type": "expense",
+      "name": "Коммуналочка",
+      "sum": 1000,
+      "account_id": "2crv5g8kp02rir0",
+      "user_id": "2crv5cskp02rb4x",
+      "created_at": "2021-05-22T18:18:23.980Z"
     }
   ]
 }

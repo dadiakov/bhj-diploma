@@ -22,7 +22,7 @@
         response.data.forEach(e => {
           optionsToInsert += `<option value="${e.id}">${e.name}</option>`;
         });
-        this.element.querySelector('.accounts-select').insertAdjacentHTML('beforeend', optionsToInsert);
+        this.element.querySelector('.accounts-select').innerHTML = optionsToInsert;
       }
     })
   }
@@ -41,7 +41,6 @@
           modifiedData.type = 'income';
         };
      Transaction.create(modifiedData, (err, response) => {
-       console.log(response);
        if(response.success) {
            this.element.reset();
            this.element.closest('.modal').style.display = 'none';

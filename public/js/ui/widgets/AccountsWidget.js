@@ -76,8 +76,8 @@ class AccountsWidget {
    * */
   onSelectAccount( element ) {
     Array.from(element.closest('.accounts-panel').querySelectorAll('.account')).forEach(e => {e.classList.remove('active')});
-    element.closest('.account').classList.add('active');
-    App.showPage('transactions', {account_id: element.closest('.account').dataset.id});
+    if (element.closest('.account')) { element.closest('.account').classList.add('active');
+    App.showPage('transactions', {account_id: element.closest('.account').dataset.id});}
   }
 
   /**
@@ -86,7 +86,7 @@ class AccountsWidget {
    * item - объект с данными о счёте
    * */
   getAccountHTML(item){
-    return `<li class="active account" data-id="${item.id}">
+    return `<li class="account" data-id="${item.id}">
             <a href="#">
               <span>${item.name}</span> /
                <span>${item.sum} ₽</span>
